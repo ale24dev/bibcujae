@@ -1,8 +1,7 @@
 package cujae.edu.cu.bibcujae.modules.security.user.service;
 
-import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
+import java.sql.SQLException;
 
 import cujae.edu.cu.bibcujae.modules.security.user.dto.UpdateUserDto;
 import cujae.edu.cu.bibcujae.modules.security.user.dto.UserDto;
@@ -28,7 +27,7 @@ public interface IUserService {
 	/*
 	 * Método para obtener a un usuario por el ID.
 	 */
-	Optional<UserEntity> getUserById(Long userId) throws SQLException;
+	UserEntity getUserById(Long userId) throws SQLException;
 
 	/*
 	 * Eliminar un usuario.

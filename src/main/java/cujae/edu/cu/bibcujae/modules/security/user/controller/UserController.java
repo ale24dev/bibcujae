@@ -1,7 +1,6 @@
 package cujae.edu.cu.bibcujae.modules.security.user.controller;
 
 import java.util.List;
-import java.util.Optional;
 import java.sql.SQLException;
 
 import org.springframework.http.ResponseEntity;
@@ -21,7 +20,7 @@ import cujae.edu.cu.bibcujae.modules.security.user.entity.UserEntity;
 import cujae.edu.cu.bibcujae.modules.security.user.service.IUserService;
 
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("bibcujae/api/v1/users")
 public class UserController {
 
     /*
@@ -43,8 +42,8 @@ public class UserController {
      * Obtener un usuario por id.
      */
     @GetMapping("/id/{id}")
-    public ResponseEntity<Optional<UserEntity>> getUserById(@PathVariable Long id) throws SQLException {
-        Optional<UserEntity> userEntity = userService.getUserById(id);
+    public ResponseEntity<UserEntity> getUserById(@PathVariable Long id) throws SQLException {
+        UserEntity userEntity = userService.getUserById(id);
         return ResponseEntity.ok(userEntity);
     }
 
@@ -53,6 +52,8 @@ public class UserController {
      */
     @PostMapping("/")
     public ResponseEntity<UserEntity> createUser(@RequestBody UserDto user) throws SQLException {
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        System.out.println(user);
         UserEntity userEntity = userService.createUser(user);
         return ResponseEntity.ok(userEntity);
     }
@@ -73,6 +74,11 @@ public class UserController {
     public void deleteUser(@PathVariable Long id)
             throws SQLException {
         this.userService.deleteUser(id);
+
+        
     }
+
+
+    
 
 }
