@@ -47,16 +47,7 @@ public class UserController {
         return ResponseEntity.ok(userEntity);
     }
 
-    /*
-     * Crear un usuario.
-     */
-    @PostMapping("/")
-    public ResponseEntity<UserEntity> createUser(@RequestBody UserDto user) throws SQLException {
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        System.out.println(user);
-        UserEntity userEntity = userService.createUser(user);
-        return ResponseEntity.ok(userEntity);
-    }
+    
 
     /*
      * Actualizar un usuario.

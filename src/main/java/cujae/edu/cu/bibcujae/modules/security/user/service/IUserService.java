@@ -30,7 +30,17 @@ public interface IUserService {
 	UserEntity getUserById(Long userId) throws SQLException;
 
 	/*
+	 * Método para obtener a un usuario por el username.
+	 */
+	UserDto getUserByUsername(String username) throws SQLException;
+
+	/*
 	 * Eliminar un usuario.
 	 */
 	void deleteUser(Long id) throws SQLException;
+
+	/*
+	 * Castear un UserEntity a Dto
+	 */
+	UserDto castUserEntityToDto(UserEntity userEntity);
 }
