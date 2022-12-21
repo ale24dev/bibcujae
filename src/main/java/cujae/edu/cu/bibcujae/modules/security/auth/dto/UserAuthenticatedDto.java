@@ -1,33 +1,36 @@
 package cujae.edu.cu.bibcujae.modules.security.auth.dto;
 
-/*
- * Clase encargada de gestionar a los usuarios.
- */
+import java.util.List;
+
+import cujae.edu.cu.bibcujae.modules.security.role.dto.RoleDto;
+
 public class UserAuthenticatedDto {
-
-    /*
-     * Nombre de usuario.
-     */
+    private Long id;
     private String username;
-    /*
-     * Contraseña del usuario.
-     */
     private String password;
-
-    /*
-     * Token del usuario.
-     */
+    private List<RoleDto> roles;
     private String token;
 
     public UserAuthenticatedDto() {
         super();
     }
 
-    public UserAuthenticatedDto(String username, String password, String token) {
+    public UserAuthenticatedDto(Long id, String username, String password,
+            List<RoleDto> roles, String token) {
         super();
+        this.id = id;
         this.username = username;
         this.password = password;
+        this.roles = roles;
         this.token = token;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -46,12 +49,26 @@ public class UserAuthenticatedDto {
         this.password = password;
     }
 
+    public List<RoleDto> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleDto> roles) {
+        this.roles = roles;
+    }
+
     public String getToken() {
         return token;
     }
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    @Override
+    public String toString() {
+        return "UserAuthenticatedDto [id=" + id + ", username=" + username + ", password=" + password + ", roles="
+                + roles + ", token=" + token + "]";
     }
 
 }

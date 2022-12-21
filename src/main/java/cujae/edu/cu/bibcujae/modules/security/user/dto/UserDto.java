@@ -84,4 +84,9 @@ public class UserDto {
 		this.roles = roles;
 	}
 
+	@Override
+	public String toString() {
+		return "UserDto [id=" + id + ", username=" + username + ", password=" + password + ", token=" + token
+				+ ", roles=" + roles + "]";
+	}
 }

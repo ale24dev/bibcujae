@@ -38,19 +38,18 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Validated @RequestBody LoginRequestDto loginRequestDto) {
-
         try {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(loginRequestDto.getUsername(),
                             loginRequestDto.getPassword()));
-
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
             String token = tokenProvider.createToken(authentication);
 
             UserDto user = userService.getUserByUsername(loginRequestDto.getUsername());
-            UserAuthenticatedDto userAuth = new UserAuthenticatedDto(user.getUsername(), user.getPassword(),
-                    token);
+            UserAuthenticatedDto userAuth = new UserAuthenticatedDto(user.getId(), user.getUsername(),
+                    user.getPassword(),
+                    user.getRoles(), token);
 
             return ResponseEntity.ok(userAuth);
         } catch (BadCredentialsException | SQLException e) {

@@ -1,5 +1,6 @@
 package cujae.edu.cu.bibcujae.modules.security.user.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.sql.SQLException;
 
@@ -45,27 +46,26 @@ public class UserService implements IUserService {
         userRoleEntity.setRole(roleService.getRoleById(Long.parseLong("2")));
         userRoleRepository.save(userRoleEntity);
 
-
         return userCreated;
     }
 
     @Override
-    public UserEntity updateUser(Long id, UpdateUserDto user) {
-        UserEntity userUpdated = null;
+    public void updateUser(UpdateUserDto user) {
         try {
-            UserEntity userFound = this.getUserById(id);
+            UserEntity userFound = this.getUserById(user.getId());
+            System.out.println(userFound);
 
             if (user.getUsername().length() != 0) {
                 userFound.setUsername(user.getUsername());
             }
             if (user.getPassword().length() != 0) {
-                userFound.setPassword(user.getPassword());
+                userFound.setPassword(UserService.encodePass(user.getPassword()));
             }
-            userUpdated = userRepository.save(userFound);
+            userRepository.save(userFound);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return userUpdated;
     }
 
     @Override
@@ -107,7 +107,7 @@ public class UserService implements IUserService {
 
     }
 
-    private String encodePass(String password) {
+    private static String encodePass(String password) {
         return new BCryptPasswordEncoder().encode(password);
     }
 
@@ -125,6 +125,17 @@ public class UserService implements IUserService {
         // userDto.setListRoles(userEntity.get());
 
         return userDto;
+    }
+
+    @Override
+    public List<UserDto> getAllUsers() throws SQLException {
+        List<UserEntity> lEntities = userRepository.findAll();
+        List<UserDto> listUser = new ArrayList<UserDto>();
+
+        for (UserEntity iter : lEntities) {
+            listUser.add(castUserEntityToDto(iter));
+        }
+        return listUser;
     }
 
 }

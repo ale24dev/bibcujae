@@ -7,21 +7,26 @@ public class RoleDto {
 	/*
 	 * Identificador del rol
 	 */
-	private Long idRole;
+	private Long id;
 
 	/*
 	 * Nombre del rol
 	 */
 	private String name;
 
-	public RoleDto(Long idRole, String name, String description) {
-		this.idRole = idRole;
+	public RoleDto(Long id, String name, String description) {
+		this.id = id;
 		this.name = name;
 	}
 
 	public RoleDto() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "RoleDto [idRole=" + id + ", name=" + name + "]";
 	}
 
 }

@@ -13,6 +13,7 @@ public interface IBookService {
      * Método para obtener todos los libros
      */
     List<BookEntity> getAllBooks();
+
     /*
      * Método para obtener libros hasta una cantidad determinada
      */
@@ -28,5 +29,13 @@ public interface IBookService {
      */
     BookEntity createBook(BookDto bookDto);
 
+    /*
+     * Método para actualizar un nuevo libro
+     */
+    BookEntity udpateBook(BookDto bookDto);
+
+    /*
+     * Método para borrar un libro
+     */
     void deleteBook(String domCode);
 }

@@ -288,4 +288,14 @@ public class BookDto {
         this.country = country;
     }
 
+    @Override
+    public String toString() {
+        return "BookDto [title=" + title + ", enter=" + enter + ", author=" + author + ", anotherAuthors="
+                + anotherAuthors + ", edition=" + edition + ", serie=" + serie + ", notes=" + notes + ", typeAuthor="
+                + typeAuthor + ", annoPub=" + annoPub + ", mentionResp=" + mentionResp + ", domCode=" + domCode
+                + ", isbnCode=" + isbnCode + ", deweyCode=" + deweyCode + ", event=" + event + ", publication="
+                + publication + ", colation=" + colation + ", anotherTitles=" + anotherTitles + ", folleto=" + folleto
+                + ", references=" + references + ", clasification=" + clasification + ", language=" + language
+                + ", country=" + country + "]";
+    }
 }

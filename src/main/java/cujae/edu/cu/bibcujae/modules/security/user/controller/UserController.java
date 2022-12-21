@@ -20,7 +20,7 @@ import cujae.edu.cu.bibcujae.modules.security.user.entity.UserEntity;
 import cujae.edu.cu.bibcujae.modules.security.user.service.IUserService;
 
 @RestController
-@RequestMapping("bibcujae/api/v1/users")
+@RequestMapping("/api/v1/users")
 public class UserController {
 
     /*
@@ -33,8 +33,9 @@ public class UserController {
      * Obtener todos los usuarios
      */
     @GetMapping("/")
-    public ResponseEntity<List<UserEntity>> getUsers() throws SQLException {
-        List<UserEntity> userList = userService.listUsers();
+    public ResponseEntity<List<UserDto>> getUsers() throws SQLException {
+        List<UserDto> userList = userService.getAllUsers();
+        System.out.println(userList.get(0));
         return ResponseEntity.ok(userList);
     }
 
@@ -52,10 +53,11 @@ public class UserController {
     /*
      * Actualizar un usuario.
      */
-    @PutMapping("/id/{id}")
-    public ResponseEntity<UserEntity> updateUser(@PathVariable Long id, @RequestBody UpdateUserDto updateUserDto)
+    @PutMapping("")
+    public ResponseEntity<String> updateUser(@RequestBody UpdateUserDto updateUserDto)
             throws SQLException {
-        return ResponseEntity.ok(userService.updateUser(id, updateUserDto));
+                userService.updateUser(updateUserDto);
+        return ResponseEntity.ok("Usuario Actualizado");
     }
 
     /*
@@ -64,12 +66,6 @@ public class UserController {
     @DeleteMapping("/id/{id}")
     public void deleteUser(@PathVariable Long id)
             throws SQLException {
-        this.userService.deleteUser(id);
-
-        
+        this.userService.deleteUser(id);       
     }
-
-
-    
-
 }

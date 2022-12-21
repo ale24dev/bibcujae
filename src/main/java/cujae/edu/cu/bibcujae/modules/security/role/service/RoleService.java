@@ -1,5 +1,6 @@
 package cujae.edu.cu.bibcujae.modules.security.role.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.sql.SQLException;
 
@@ -18,9 +19,14 @@ public class RoleService implements IRoleService {
     private RoleRepository roleRepository;
 
     @Override
-    public List<RoleEntity> listRoles() throws SQLException {
+    public List<RoleDto> listRoles() throws SQLException {
         List<RoleEntity> listRoles = roleRepository.findAll();
-        return listRoles;
+
+        List<RoleDto> listRole = new ArrayList<RoleDto>();
+        for (RoleEntity roleEntity : listRoles) {
+           listRole.add(castRoleEntityToDto(roleEntity)) ;
+        }
+        return listRole;
     }
 
     @Override
@@ -34,8 +40,10 @@ public class RoleService implements IRoleService {
     public RoleDto castRoleEntityToDto(RoleEntity roleEntity) {
         RoleDto roleDto = new RoleDto();
 
-        roleDto.setIdRole(roleEntity.getIdRole());
-        roleDto.setName(roleEntity.getName());
+        roleDto.setId(roleEntity.getIdRole());
+        roleDto.setName(roleEntity.getName().trim());
+
+        System.out.println(roleDto);
 
         return roleDto;
     }

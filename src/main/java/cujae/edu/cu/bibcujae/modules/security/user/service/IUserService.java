@@ -17,12 +17,17 @@ public interface IUserService {
 	/*
 	 * Método para actualizar un usuario.
 	 */
-	UserEntity updateUser(Long id, UpdateUserDto user);
+	void updateUser(UpdateUserDto user);
+
+	/*
+	 * Método para obtener a todos los usuarios. (SE DEJA ASI PARA QUE PINCHE EL LOGIN)
+	 */
+	List<UserEntity> listUsers() throws SQLException;
 
 	/*
 	 * Método para obtener a todos los usuarios.
 	 */
-	List<UserEntity> listUsers() throws SQLException;
+	List<UserDto> getAllUsers() throws SQLException;
 
 	/*
 	 * Método para obtener a un usuario por el ID.

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
+import cujae.edu.cu.bibcujae.modules.security.role.dto.RoleDto;
 import cujae.edu.cu.bibcujae.modules.security.role.entity.RoleEntity;
 import cujae.edu.cu.bibcujae.modules.security.role.service.IRoleService;
 import cujae.edu.cu.bibcujae.modules.security.user_role.entity.UserRoleEntity;
@@ -34,8 +35,9 @@ public class RoleController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<RoleEntity>> getRoles() throws SQLException {
-        List<RoleEntity> roleList = roleService.listRoles();
+    public ResponseEntity<List<RoleDto>> getRoles() throws SQLException {
+        System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        List<RoleDto> roleList = roleService.listRoles();
         return ResponseEntity.ok(roleList);
     }
 
