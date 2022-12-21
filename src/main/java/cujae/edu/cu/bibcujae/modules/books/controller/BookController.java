@@ -56,7 +56,6 @@ public class BookController {
 
     @PostMapping("/")
     public ResponseEntity<BookEntity> createBook(@RequestBody BookDto bookDto) {
-        System.out.println("ENTROOOOOOOOOOOOOOOOOO");
         BookEntity book = bookService.createBook(bookDto);
         return ResponseEntity.ok(book);
     }
@@ -64,8 +63,6 @@ public class BookController {
     @PutMapping("/")
     public ResponseEntity<BookEntity> updateBook(@RequestBody BookDto bookDto) {
 
-        System.out.println("ACTUALIZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAR");
-        System.out.println(bookDto);
         BookEntity book = bookService.udpateBook(bookDto);
         return ResponseEntity.ok(book);
     }

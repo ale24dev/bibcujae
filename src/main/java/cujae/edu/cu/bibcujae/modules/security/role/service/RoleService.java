@@ -43,8 +43,6 @@ public class RoleService implements IRoleService {
         roleDto.setId(roleEntity.getIdRole());
         roleDto.setName(roleEntity.getName().trim());
 
-        System.out.println(roleDto);
-
         return roleDto;
     }
 

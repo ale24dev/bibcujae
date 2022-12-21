@@ -23,6 +23,16 @@ public class UserDto {
 	private String password;
 
 	/*
+	 * Nombre completo del usuario.
+	 */
+	private String fullname;
+
+	/*
+	 * Email de usuario.
+	 */
+	private String email;
+
+	/*
 	 * Token del usuario.
 	 */
 	private String token;
@@ -82,6 +92,22 @@ public class UserDto {
 
 	public void setRoles(List<RoleDto> roles) {
 		this.roles = roles;
+	}
+
+	public String getFullname() {
+		return fullname;
+	}
+
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override

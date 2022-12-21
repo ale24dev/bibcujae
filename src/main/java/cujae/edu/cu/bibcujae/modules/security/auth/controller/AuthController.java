@@ -1,6 +1,9 @@
 package cujae.edu.cu.bibcujae.modules.security.auth.controller;
 
+import java.io.IOException;
 import java.sql.SQLException;
+
+import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,12 +19,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import cujae.edu.cu.bibcujae.modules.email.EmailSenderService;
+import cujae.edu.cu.bibcujae.modules.email.Mail;
 import cujae.edu.cu.bibcujae.modules.security.auth.dto.LoginRequestDto;
 import cujae.edu.cu.bibcujae.modules.security.auth.dto.UserAuthenticatedDto;
 import cujae.edu.cu.bibcujae.modules.security.auth.services.TokenProvider;
 import cujae.edu.cu.bibcujae.modules.security.user.dto.UserDto;
 import cujae.edu.cu.bibcujae.modules.security.user.entity.UserEntity;
 import cujae.edu.cu.bibcujae.modules.security.user.service.UserService;
+import freemarker.template.TemplateException;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -35,6 +41,9 @@ public class AuthController {
 
     @Autowired
     private TokenProvider tokenProvider;
+
+    @Autowired
+    EmailSenderService emailSenderService;
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Validated @RequestBody LoginRequestDto loginRequestDto) {
@@ -61,8 +70,12 @@ public class AuthController {
      * Crear un usuario.
      */
     @PostMapping("/signup")
-    public ResponseEntity<UserEntity> signUp(@RequestBody UserDto user) throws SQLException {
+    public ResponseEntity<UserEntity> signUp(@RequestBody UserDto user)
+            throws SQLException, MessagingException, IOException, TemplateException {
         UserEntity userEntity = userService.createUser(user);
+        System.out.println("USERNAME: " + user.getFullname() + " EMAIL: " + user.getEmail());
+        emailSenderService.sendEmailToUserWithCredentials(user.getFullname(), user.getEmail());
+
         return ResponseEntity.ok(userEntity);
     }
 

@@ -156,7 +156,6 @@ public class BookService implements IBookService {
     @Override
     public BookEntity udpateBook(BookDto bookDto) {
         BookEntity bookEntity = getBookByDomCode(bookDto.getDomCode().trim());
-        System.out.println("ENTITYYYYYYYYYYYYYYYY: " + bookEntity.getTitle() );
         if (bookEntity != null) {
 
             bookEntity.setTitle(bookDto.getTitle());

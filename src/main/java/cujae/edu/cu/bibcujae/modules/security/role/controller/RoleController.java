@@ -36,7 +36,6 @@ public class RoleController {
 
     @GetMapping("/")
     public ResponseEntity<List<RoleDto>> getRoles() throws SQLException {
-        System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         List<RoleDto> roleList = roleService.listRoles();
         return ResponseEntity.ok(roleList);
     }

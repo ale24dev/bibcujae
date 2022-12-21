@@ -20,6 +20,16 @@ public class UpdateUserDto {
      */
     private String password;
 
+    /*
+	 * Nombre completo del usuario.
+	 */
+	private String fullname;
+
+	/*
+	 * Email de usuario.
+	 */
+	private String email;
+
     public UpdateUserDto() {
         super();
     }
@@ -48,6 +58,22 @@ public class UpdateUserDto {
 
     public Long getId() {
         return id;
+    }
+    
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override

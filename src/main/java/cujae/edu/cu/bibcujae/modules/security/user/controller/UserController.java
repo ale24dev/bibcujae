@@ -35,7 +35,6 @@ public class UserController {
     @GetMapping("/")
     public ResponseEntity<List<UserDto>> getUsers() throws SQLException {
         List<UserDto> userList = userService.getAllUsers();
-        System.out.println(userList.get(0));
         return ResponseEntity.ok(userList);
     }
 
@@ -47,8 +46,6 @@ public class UserController {
         UserEntity userEntity = userService.getUserById(id);
         return ResponseEntity.ok(userEntity);
     }
-
-    
 
     /*
      * Actualizar un usuario.

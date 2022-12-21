@@ -39,6 +39,8 @@ public class UserService implements IUserService {
         UserEntity userEntity = new UserEntity();
         userEntity.setUsername(user.getUsername());
         userEntity.setPassword(encodePass(user.getPassword()));
+        userEntity.setFullname(user.getFullname());
+        userEntity.setEmail(user.getEmail());
         UserEntity userCreated = userRepository.save(userEntity);
 
         UserRoleEntity userRoleEntity = new UserRoleEntity();
@@ -53,13 +55,18 @@ public class UserService implements IUserService {
     public void updateUser(UpdateUserDto user) {
         try {
             UserEntity userFound = this.getUserById(user.getId());
-            System.out.println(userFound);
 
             if (user.getUsername().length() != 0) {
                 userFound.setUsername(user.getUsername());
             }
             if (user.getPassword().length() != 0) {
                 userFound.setPassword(UserService.encodePass(user.getPassword()));
+            }
+            if (user.getEmail().length() != 0) {
+                userFound.setEmail(user.getEmail());
+            }
+            if (user.getFullname().length() != 0) {
+                userFound.setFullname(user.getFullname());
             }
             userRepository.save(userFound);
 
@@ -121,6 +128,8 @@ public class UserService implements IUserService {
         userDto.setId(userEntity.getIdUser());
         userDto.setUsername(userEntity.getUsername().trim());
         userDto.setPassword(userEntity.getPassword().trim());
+        userDto.setFullname(userEntity.getFullname());
+        userDto.setEmail(userEntity.getEmail());
         /// Falta agregar los roles
         // userDto.setListRoles(userEntity.get());
 
